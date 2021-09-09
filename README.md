@@ -1,4 +1,3 @@
-# Shared Notes
 Share notes with your team.
 
 <p align="center">
