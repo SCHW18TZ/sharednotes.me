@@ -1,0 +1,1169 @@
+<html>
+<head>
+
+<link href="https://fonts.googleapis.com/css?family=Arvo|Nunito|Oxygen|Exo+2|Source+Code+Pro" rel="stylesheet"/>
+
+<link href="https://cdn.flycricket.com/templates/main-ltr/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+<style>/* these are overridden inline in the mustache compilation */
+:root {
+  --background-color: #ffffff;
+  --poweredbybg-color: #f0f0f0;
+  --text-color: #000000;
+  --link-color: #008DD5;
+  --linkhover-color: #005A88;
+  --main-font: 'Arvo'; }
+
+.editing-active {
+  transition: all 0.2s ease-in-out;
+  border: 3px dotted rgba(0, 0, 0, 0.2); }
+  .editing-active:hover {
+    border-color: rgba(31, 175, 132, 0.8);
+    background-color: rgba(31, 175, 132, 0.3);
+    cursor: pointer; }
+
+.placeholder-text {
+  font-style: italic;
+  opacity: 0.6; }
+
+* {
+  font-family: var(--main-font);
+  font-weight: 400;
+  color: var(--text-color); }
+
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "pnum";
+  font-feature-settings: "pnum";
+  font-variant-numeric: proportional-nums;
+  position: relative;
+  background: #fff; }
+
+a {
+  color: var(--link-color);
+  transition: all 0.2s linear; }
+  a:focus, a:hover {
+    color: var(--linkhover-color); }
+  a.nohover:hover {
+    text-decoration: none; }
+
+.claim-bar {
+  padding: 12px 0;
+  background: #fff;
+  color: #555;
+  font-family: 'Oxygen', Helvetica, sans-serif;
+  transition: all 0.3s ease-in-out; }
+  .claim-bar * {
+    font-family: 'Oxygen', Helvetica, sans-serif; }
+  .claim-bar div {
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: #555; }
+    .claim-bar div span {
+      transition: all 0.3s ease-in-out;
+      color: #008DD5; }
+  .claim-bar:hover {
+    text-decoration: none;
+    text-decoration: none;
+    background: #008DD5;
+    color: white; }
+    .claim-bar:hover div {
+      color: white; }
+      .claim-bar:hover div span {
+        color: white; }
+
+.whitelabel-badge-mobile {
+  background: white;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  border-radius: 4px;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: 0.2s all ease-in-out; }
+  .whitelabel-badge-mobile .wl-label {
+    font-size: 0.8em;
+    color: #777; }
+  .whitelabel-badge-mobile * {
+    transition: 0.2s all ease-in-out; }
+  .whitelabel-badge-mobile .st0 {
+    fill: #1FAF84; }
+  .whitelabel-badge-mobile:hover {
+    background: #1FAF84; }
+    .whitelabel-badge-mobile:hover * {
+      color: white; }
+    .whitelabel-badge-mobile:hover .st0 {
+      fill: #ffffff; }
+  @media (min-width: 491px) {
+    .whitelabel-badge-mobile {
+      display: none; } }
+
+.promo-badge {
+  display: block;
+  position: relative;
+  background: white;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: left;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer; }
+  .promo-badge * {
+    font-family: 'Oxygen', Helvetica, sans-serif;
+    transition: 0.2s all ease-in-out;
+    line-height: normal;
+    text-align: left; }
+  .promo-badge .pb-loading-container {
+    padding: 0.5em; }
+    .promo-badge .pb-loading-container .lds-ring {
+      display: inline-block;
+      position: relative;
+      width: 40px;
+      height: 40px; }
+    .promo-badge .pb-loading-container .lds-ring div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      margin: 4px;
+      border: 4px solid #ddd;
+      border-radius: 50%;
+      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #ddd transparent transparent transparent; }
+    .promo-badge .pb-loading-container .lds-ring div:nth-child(1) {
+      animation-delay: -0.45s; }
+    .promo-badge .pb-loading-container .lds-ring div:nth-child(2) {
+      animation-delay: -0.3s; }
+    .promo-badge .pb-loading-container .lds-ring div:nth-child(3) {
+      animation-delay: -0.15s; }
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+  .promo-badge .pb-main-container {
+    display: none;
+    flex-direction: row; }
+    .promo-badge .pb-main-container .pb-text-container {
+      flex: 1;
+      padding-right: 0.5em;
+      align-self: center; }
+      .promo-badge .pb-main-container .pb-text-container .pb-h1 span {
+        color: #555;
+        font-size: 1.2em;
+        margin-right: 0.2em; }
+      .promo-badge .pb-main-container .pb-text-container .pb-h1 .pb-ios {
+        width: 16px;
+        height: 16px;
+        fill: #ccc;
+        margin-bottom: -1px;
+        display: none; }
+      .promo-badge .pb-main-container .pb-text-container .pb-h1 .pb-android {
+        width: 15px;
+        height: 15px;
+        fill: #ccc;
+        stroke: #ccc;
+        margin-bottom: -1px;
+        display: none; }
+      .promo-badge .pb-main-container .pb-text-container .pb-h2 {
+        color: #888;
+        font-size: 0.9em;
+        margin-top: -2px; }
+      .promo-badge .pb-main-container .pb-text-container .pb-by {
+        font-size: 0.7em;
+        text-transform: uppercase;
+        text-align: left;
+        margin-top: 4px; }
+        .promo-badge .pb-main-container .pb-text-container .pb-by a {
+          color: #aaa; }
+          .promo-badge .pb-main-container .pb-text-container .pb-by a:hover {
+            color: #25d5a1;
+            text-decoration: none; }
+    .promo-badge .pb-main-container img {
+      width: 58px;
+      height: 58px;
+      border-radius: 8px;
+      margin-right: 0.75em;
+      align-self: center;
+      border: none;
+      display: none; }
+  @media (min-width: 600px) {
+    .promo-badge {
+      position: fixed;
+      z-index: 999999999;
+      top: 10px;
+      right: 10px;
+      border-radius: 8px;
+      -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); } }
+
+footer {
+  background: #222; }
+  footer .editing-active {
+    border-color: rgba(255, 255, 255, 0.8); }
+  footer p {
+    color: #777 !important; }
+  footer .social-icons {
+    background: #222;
+    width: auto;
+    display: inline-block; }
+    footer .social-icons .social-icon {
+      transition: opacity 0.2s ease-in-out;
+      display: inline-block;
+      width: 32px;
+      margin-right: 12px;
+      opacity: 0.5;
+      padding-top: 30px; }
+      footer .social-icons .social-icon path, footer .social-icons .social-icon polygon {
+        transition: all 0.2s linear;
+        fill: white; }
+      footer .social-icons .social-icon:hover {
+        opacity: 1; }
+      footer .social-icons .social-icon.si-muted {
+        border: 2px dashed rgba(255, 255, 255, 0.3);
+        border-radius: 50%; }
+        footer .social-icons .social-icon.si-muted path, footer .social-icons .social-icon.si-muted polygon {
+          transition: all 0.2s linear;
+          fill: rgba(255, 255, 255, 0.3); }
+    footer .social-icons.editing-active {
+      margin-top: 30px;
+      padding: 10px;
+      margin-left: -10px; }
+      footer .social-icons.editing-active .social-icon {
+        padding-top: 0; }
+  footer .footer-store-button-container {
+    text-align: right;
+    margin: auto;
+    vertical-align: middle; }
+    @media (max-width: 767px) {
+      footer .footer-store-button-container {
+        text-align: center; } }
+    footer .footer-store-button-container .footer-store-button {
+      padding-top: 2em;
+      padding-bottom: 2em;
+      display: inline-block; }
+      footer .footer-store-button-container .footer-store-button .store-button {
+        height: auto !important;
+        margin: 0 6px; }
+        footer .footer-store-button-container .footer-store-button .store-button img {
+          height: 50px !important; }
+
+#header .store-button img {
+  height: 60px !important; }
+
+#attribution {
+  transition: all 0.2s ease-in-out;
+  padding: 2em 0;
+  font-size: 0.8em;
+  color: #888 !important; }
+  #attribution p {
+    margin-bottom: 0.45em;
+    font-size: 1.1em; }
+  #attribution a {
+    color: #aaa !important;
+    text-decoration: none; }
+    #attribution a:hover {
+      color: #007bff !important; }
+
+h1 {
+  font-size: 3.2em;
+  margin-bottom: 0;
+  font-weight: bold;
+  letter-spacing: 0.05em; }
+
+h2 {
+  margin-top: 0.2em;
+  margin-bottom: 0.3em;
+  font-size: 1.8em; }
+
+h3 {
+  font-weight: normal;
+  font-size: 16px; }
+
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  color: var(--text-color);
+  text-align: center; }
+
+.cover-container {
+  margin-right: auto;
+  margin-left: auto; }
+
+.cover {
+  padding: 0 1.5rem; }
+  .cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700; }
+
+p[id='text.line2'] {
+  margin-bottom: 0 !important; }
+
+.site-wrapper {
+  position: relative;
+  background-size: cover;
+  min-height: 100vh; }
+  .site-wrapper .editing-active {
+    border-color: var(--text-color); }
+  .site-wrapper .site-wrapper-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.9;
+    background-color: var(--background-color); }
+  .site-wrapper .site-wrapper-inner {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; }
+    @media (min-width: 767px) {
+      .site-wrapper .site-wrapper-inner {
+        padding-top: 0; } }
+    .site-wrapper .site-wrapper-inner .arrows {
+      width: 60px;
+      height: 32px;
+      position: absolute;
+      left: 50%;
+      margin-left: -30px;
+      bottom: 15px;
+      opacity: 0.5; }
+      @media (max-width: 786px) {
+        .site-wrapper .site-wrapper-inner .arrows {
+          display: none; } }
+      .site-wrapper .site-wrapper-inner .arrows path {
+        stroke: var(--text-color);
+        fill: transparent;
+        stroke-width: 2px; }
+
+@media (min-width: 40em) {
+  .cover-container {
+    width: 100%; } }
+
+@media (max-width: 786px) {
+  * {
+    text-align: center; } }
+
+#header {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center; }
+  #header .text-container {
+    text-align: left;
+    position: relative;
+    display: block;
+    padding-left: 2em;
+    padding-right: 2em;
+    flex: 1;
+    max-width: 800px; }
+    #header .text-container .tc-table {
+      width: 100%;
+      display: table;
+      height: auto;
+      padding-bottom: 5em;
+      padding-top: 2em; }
+      @media (min-width: 787px) {
+        #header .text-container .tc-table {
+          height: 100%;
+          padding-bottom: 0; } }
+      #header .text-container .tc-table .editing-ttp {
+        padding: 1em;
+        font-size: 1.2em; }
+      #header .text-container .tc-table .editing-app-button {
+        font-style: italic;
+        padding: 0.25em;
+        font-size: 1.2em;
+        display: inline-block;
+        border-radius: 1em; }
+        #header .text-container .tc-table .editing-app-button:first-of-type {
+          margin-right: 0.5em; }
+    #header .text-container h1 {
+      font-size: 2em;
+      margin-bottom: 0.25em;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      line-height: 1.1em; }
+      @media (min-width: 787px) {
+        #header .text-container h1 {
+          font-size: 3.2em; } }
+    #header .text-container h2 {
+      margin-top: 0.2em;
+      margin-bottom: 0.3em;
+      font-size: 1.3em; }
+      @media (min-width: 787px) {
+        #header .text-container h2 {
+          font-size: 1.8em; } }
+  #header .device-container {
+    padding-bottom: 2em;
+    width: 100%; }
+    #header .device-container img {
+      max-height: 70vh;
+      max-width: 90%;
+      position: relative;
+      margin-top: 5em; }
+    @media (min-width: 787px) {
+      #header .device-container {
+        width: auto;
+        max-width: 40vw;
+        padding-bottom: 0; }
+        #header .device-container img {
+          margin-top: 0; } }
+
+.store-button {
+  width: auto;
+  display: inline-block; }
+  .store-button:first-of-type {
+    margin-right: 12px; }
+  @media (max-width: 491px) {
+    .store-button:first-of-type {
+      margin-right: 0;
+      margin-bottom: 12px; } }
+  .store-button:hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.05); }
+  .store-button svg {
+    width: auto;
+    height: 100%;
+    display: block;
+    position: relative; }
+  @media (max-width: 768px) {
+    .store-button {
+      margin: auto; } }
+
+@media (max-width: 491px) {
+  .text-to-phone:not(.email-subscribe) {
+    display: none !important; } }
+
+.text-to-phone input[type='tel'], .text-to-phone input[type='email'] {
+  transition: all 0.2s linear;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  outline: none;
+  color: #333 !important;
+  text-align: left; }
+  .text-to-phone input[type='tel']:focus, .text-to-phone input[type='email']:focus {
+    border-color: var(--link-color); }
+
+.text-to-phone input[type='email'] {
+  padding-left: 12px;
+  width: 230px; }
+
+.text-to-phone button, .text-to-phone input[type='submit'] {
+  border-radius: 4px;
+  background: var(--link-color);
+  color: white;
+  font-size: 14px;
+  border: 0;
+  padding: 6px 8px;
+  padding-top: 7px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  outline: none;
+  cursor: pointer; }
+
+section {
+  padding: 5em 0;
+  background: white; }
+  section:not(.text-section) * {
+    color: #333; }
+  section h2 {
+    font-size: 2.5em;
+    color: #333;
+    padding-bottom: 0.25em;
+    margin-bottom: 0; }
+
+#screenshots .owl-nav {
+  padding-top: 3em; }
+  #screenshots .owl-nav button {
+    outline: none; }
+  #screenshots .owl-nav .owl-next, #screenshots .owl-nav .owl-prev {
+    font-size: 2em; }
+    #screenshots .owl-nav .owl-next *, #screenshots .owl-nav .owl-prev * {
+      color: rgba(0, 0, 0, 0.25); }
+  #screenshots .owl-nav .owl-prev {
+    margin-right: 1em; }
+
+#screenshots img {
+  border-radius: 0.5em;
+  -webkit-box-shadow: 2px 2px 10px -2px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 2px 2px 10px -2px rgba(0, 0, 0, 0.49);
+  box-shadow: 2px 2px 5px -2px rgba(0, 0, 0, 0.49); }
+
+#screenshots h2 {
+  padding-bottom: 0.5em;
+  margin-bottom: 2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  padding-left: 2em;
+  padding-right: 2em; }
+
+@media (max-width: 767px) {
+  #screenshots h2 {
+    padding-left: 0;
+    padding-right: 0;
+    display: block; } }
+
+#features p {
+  font-size: 1.4em; }
+
+#features ul {
+  padding-left: 1em;
+  padding-top: 0.75em; }
+  #features ul li {
+    list-style-type: circle;
+    font-size: 1.2em;
+    padding-bottom: 0.5em; }
+
+#features button {
+  transition: transform 0.2s ease-in-out;
+  padding: 0.75em 1.5em;
+  border: 0;
+  border-radius: 4px;
+  margin-top: 1em;
+  background-color: var(--background-color);
+  color: white;
+  cursor: pointer; }
+  #features button:hover {
+    transform: scale(1.1); }
+
+#features .feature-right {
+  text-align: left;
+  padding-top: 2em; }
+
+#features .feature-left {
+  text-align: center;
+  padding-right: 0; }
+  #features .feature-left img {
+    max-width: 100%;
+    max-height: 575px; }
+
+@media (min-width: 767px) {
+  #features .feature-left {
+    margin: auto;
+    padding-right: 40px; } }
+
+@media (max-width: 767px) {
+  #features .feature-right {
+    padding-top: 4em; }
+  #features ul {
+    padding-left: 0; }
+    #features ul li {
+      list-style: none; } }
+
+#reviews .stars {
+  width: 100%;
+  padding-bottom: 1.5em; }
+  #reviews .stars svg {
+    color: #eec643;
+    height: 34px;
+    width: 34px; }
+    #reviews .stars svg path {
+      fill: #eec643; }
+
+#reviews #quote-carousel {
+  padding: 0 80px; }
+  #reviews #quote-carousel .carousel-control svg {
+    width: 14px; }
+  #reviews #quote-carousel .carousel-control path {
+    fill: #999; }
+  #reviews #quote-carousel .carousel-indicators {
+    margin-bottom: -1em; }
+    #reviews #quote-carousel .carousel-indicators li {
+      background: #c0c0c0; }
+    #reviews #quote-carousel .carousel-indicators .active {
+      background: #666; }
+
+#reviews blockquote {
+  position: relative;
+  font-size: 1em;
+  font-style: italic;
+  color: #666;
+  padding: 0 5%;
+  margin-bottom: 0; }
+  @media (min-width: 768px) {
+    #reviews blockquote {
+      font-size: 1.6em;
+      line-height: 1.5em;
+      padding: 0 10%; } }
+  #reviews blockquote footer {
+    background: none !important;
+    font-size: 0.6em;
+    font-weight: 700;
+    color: #c7c6c1; }
+    #reviews blockquote footer:before {
+      content: '\2015'; }
+
+a.contact {
+  color: #999; }
+
+a.contact:hover {
+  color: #fff;
+  text-decoration: none; }
+
+@media (max-width: 767px) {
+  * {
+    text-align: center; }
+  section.text-section .col-xs-12 {
+    padding: 0 15px; } }
+
+#dl-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  padding-top: 5em;
+  display: none; }
+  #dl-loader .coffee_cup {
+    width: 20px;
+    height: 24px;
+    border: 1px #999 solid;
+    border-radius: 0px 0px 5px 5px;
+    position: relative;
+    margin: 12px auto; }
+    #dl-loader .coffee_cup:after, #dl-loader .coffee_cup:before {
+      position: absolute;
+      content: ""; }
+    #dl-loader .coffee_cup:after {
+      width: 5px;
+      height: 12px;
+      border: 1px #999 solid;
+      border-left: none;
+      border-radius: 0px 20px 20px 0px;
+      left: 20px; }
+    #dl-loader .coffee_cup:before {
+      width: 1px;
+      height: 6px;
+      background-color: #999;
+      top: -10px;
+      left: 4px;
+      box-shadow: 5px 0px 0px 0px #999, 5px -5px 0px 0px #999, 10px 0px 0px 0px #999;
+      -webkit-animation: steam 1s linear infinite alternate;
+      -moz-animation: steam 1s linear infinite alternate;
+      animation: steam 1s linear infinite alternate; }
+
+@-webkit-keyframes steam {
+  0% {
+    height: 0px; }
+  100% {
+    height: 6px; } }
+
+@-moz-keyframes steam {
+  0% {
+    height: 0px; }
+  100% {
+    height: 6px; } }
+
+@keyframes steam {
+  0% {
+    height: 0px; }
+  100% {
+    height: 6px; } }
+  #dl-loader div {
+    color: #666;
+    font-size: 0.9em; }
+</style>
+<script src="https://cdn.flycricket.com/templates/main-ltr/js/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.flycricket.com/templates/main-ltr/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdn.flycricket.com/templates/main-ltr/js/bowser.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+		var _fc_stage = window.location.href.startsWith('file://') || window.location.href.startsWith('http://') ? "local" : "prod";
+	</script>
+<style id="global_style">:root {
+	--background-color: #004AC5;
+	--text-color: #ffffff;
+	--link-color: #EEC643;
+	--linkhover-color: #005A88;
+	--main-font: 'Oxygen';
+	--backgroundgradient: True;
+	--backgroundopacity: 0.9;
+}
+</style>
+<style>
+		.grecaptcha-badge {
+			visibility: hidden;
+		}
+
+		* {
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.main-container {
+			color: #222;
+			padding: 2em 0;
+			padding-bottom: 4em;
+			text-align: left !important;
+
+			padding: 2em;
+			background: white;
+			min-height: 400px;
+			-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+			-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+			box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+
+		}
+
+		.main-container * {
+			text-align: left !important;
+		}
+
+		.main-container *:not(a) {
+			color: #222;
+		}
+
+		.main-container ins.adsbygoogle {
+			background: #ccc;
+		}
+
+		.main-container #content p {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		a {
+			color: #009c9c;
+		}
+
+		a:hover {
+			color: #007bff;
+		}
+
+		h2 {
+			font-size: 1.5em;
+		}
+
+		@media only screen and (max-width: 600px) {
+			h2 {
+				font-size: 1.2em;
+			}
+		}
+
+		a.nohover {
+			color: white;
+			text-decoration: none;
+		}
+
+		#preloader {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			background: white;
+			text-align: center;
+			align-items: center;
+			justify-content: center;
+			align-content: center;
+			z-index: 99999;
+		}
+
+		.loader {
+			border: 8px solid #f3f3f3;
+			/* Light grey */
+			border-top: 8px solid #009c9c;
+			/* Blue */
+			border-radius: 50%;
+			width: 60px;
+			height: 60px;
+			animation: spin 1.5s linear infinite;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+<style>
+		#fc123-promo {
+			padding-bottom: 20px;
+			background: #eee;
+		}
+
+		.fc123-promoclass {
+			padding: 10px 20px;
+			display: none;
+			flex-wrap: wrap;
+			cursor: pointer;
+		}
+
+		.fc123-promoclass * {
+			font-family: 'Exo 2', sans-serif;
+		}
+
+		.fc123-promoclass img {
+			display: inline-block;
+			margin-right: 20px;
+			border-radius: 8px;
+			max-height: 50px;
+		}
+
+		.fc123-promoclass .fc123-button {
+			padding: 10px 30px;
+			border-radius: 8px;
+			font-weight: bold;
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
+			margin-top: 10px;
+		}
+
+		.fc123-promoclass .fc123-button:hover {
+			background: #357DED;
+		}
+
+		.fc123-promoclass .fc123-pc-text {
+			padding-right: 1em;
+		}
+
+		.fc123-promoclass h1 {
+			text-align: left;
+			font-size: 1.8em;
+			margin: 0;
+		}
+
+		.fc123-promoclass h2 {
+			text-align: left;
+			font-size: 1.1em;
+			margin: 0;
+		}
+
+		.fc123-pr {
+			font-size: 0.7em;
+			text-align: right;
+			margin-top: 5px;
+			opacity: 0.8;
+			margin-right: 4px;
+			transition: all 0.2s ease-in-out;
+		}
+
+		.fc123-pr:hover {
+			opacity: 1;
+		}
+
+		.fc123-button svg {
+			width: 18px;
+			height: 18px;
+			position: relative;
+			top: 3px;
+			margin-right: 4px;
+			display: none;
+		}
+
+		.fc123-button svg.fc123-b-ios {
+			top: 2px;
+		}
+
+		@media only screen and (max-width: 768px) {
+			.fc123-promoclass h1 {
+				font-size: 1.5em;
+			}
+
+			.fc123-promoclass h2 {
+				font-size: 1em;
+			}
+		}
+
+		@media only screen and (max-width: 600px) {
+			.fc123-promoclass h1 {
+				font-size: 1.25em;
+				text-align: center;
+			}
+
+			.fc123-promoclass h2 {
+				font-size: 0.9em;
+				text-align: center;
+			}
+
+			.fc123-promoclass .fc123-button {
+				padding: 10px 24px;
+				border-radius: 4px;
+				font-size: 1em;
+			}
+
+			.fc123-pr {
+				text-align: center;
+				margin-right: 0;
+			}
+
+			.fc123-button svg {
+				width: 16px;
+				height: 16px;
+				position: relative;
+				top: 3px;
+				margin-right: 4px;
+			}
+
+			.fc123-promoclass {
+				text-align: center !important;
+			}
+
+			.fc123-promoclass img {
+				display: none;
+			}
+
+			.fc123-promoclass .fc123-pc-action {
+				text-align: center;
+				width: 100%;
+			}
+
+			.fc123-break {
+				flex-basis: 100%;
+				height: 0;
+			}
+		}
+	</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<meta content="https://shared-notes.flycricket.io/privacy.html" property="og:url">
+<meta content="website" property="og:type">
+<meta content="Shared Notes - Privacy Policy" property="og:title"/>
+<!-- <meta property="og:image" content="" /> -->
+<meta content="" property="og:description"/>
+<meta content="" name="description"/>
+<title>Shared Notes - Privacy Policy</title></meta></meta></head>
+<body style="background:#222;">
+<div id="preloader" pro-remove="">
+<div style="flex:1;"></div>
+<div class="loader"></div>
+<div style="flex:1;"></div>
+</div>
+<div id="fc123-promo" pro-remove="" whitelist-remove="">
+<div class="fc123-promoclass">
+<img style="align-self:center;"/>
+<div class="fc123-pc-text" style="flex:1;align-self: center;">
+<h1>Loading</h1>
+<h2>Please wait...</h2>
+</div>
+<div class="fc123-break"></div>
+<div class="fc123-pc-action" style="align-self: center;">
+<div class="fc123-button">
+<svg class="fc123-b-ios" id="Layer_1" style="enable-background:new 0 0 2038 2500;" version="1.1" viewbox="0 0 2038 2500" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+<path class="st0" d="M1124.5,217.6C1288.7,1.1,1517.1,0.1,1517.1,0.1s34,203.5-129.2,399.6c-174.2,209.4-372.3,175.1-372.3,175.1
+	S978.4,410.1,1124.5,217.6z M1036.5,717.3c84.5,0,241.3-116.2,445.5-116.2c351.4,0,489.6,250,489.6,250s-270.4,138.2-270.4,473.6
+	c0,378.4,336.8,508.8,336.8,508.8s-235.4,662.7-553.4,662.7c-146.1,0-259.6-98.4-413.5-98.4c-156.8,0-312.5,102.1-413.8,102.1
+	C366.9,2500,0,1871.4,0,1366.1c0-497.1,310.5-757.9,601.8-757.9C791.1,608.2,938,717.3,1036.5,717.3L1036.5,717.3z"></path>
+</svg>
+<svg class="fc123-b-android" id="Layer_1" style="enable-background:new 0 0 2232 2500;" version="1.1" viewbox="0 0 2232 2500" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+<style type="text/css">
+							.st1 {
+								fill: none;
+								stroke-width: 32.8724;
+								stroke-linecap: round;
+								stroke-linejoin: round;
+								stroke-miterlimit: 43.8299;
+							}
+						</style>
+<path class="st0" d="M764,1518.5c86.2,0,156,69.9,156,156V2344c0,86.2-69.9,156-156,156c-86.2,0-156-69.9-156-156v-669.4
+						C608,1588.4,677.8,1518.5,764,1518.5L764,1518.5z"></path>
+<path class="st0" d="M407.8,713.7c-0.5,5.9-1,11.9-1,17.9v1014.2c0,109.1,86.3,196.9,193.5,196.9h1031.4
+						c107.2,0,193.5-87.9,193.5-196.9V731.7c0-6-0.2-12.1-0.7-17.9L407.8,713.7L407.8,713.7z"></path>
+<path class="st0" d="M1468,1518.5c86.2,0,156,69.9,156,156V2344c0,86.2-69.9,156-156,156c-86.2,0-156-69.9-156-156v-669.4
+						C1312,1588.4,1381.8,1518.5,1468,1518.5L1468,1518.5z M156.1,804c86.2,0,156,69.9,156,156v669.4c0,86.2-69.9,156-156,156
+						c-86.2,0-156-69.9-156-156V960C0,873.9,69.9,804,156.1,804L156.1,804z M2075.9,804c86.2,0,156,69.9,156,156v669.4
+						c0,86.2-69.9,156-156,156c-86.2,0-156-69.9-156-156V960C1919.9,873.9,1989.8,804,2075.9,804L2075.9,804z M412.3,647.1
+						c4.3-311.5,276.2-566.9,625.3-600.6h156.8c349,33.7,620.9,289.1,625.3,600.6H412.3z"></path>
+<path class="st1" d="M466.6,16.4l164.6,285.1 M1765.4,16.4l-164.6,285.1"></path>
+<path class="st0" d="M906.4,367.9c0.1,43.5-35.9,78.9-80.5,79.1c-44.6,0.1-80.8-35.1-81-78.6v-0.4c-0.1-43.6,35.9-78.9,80.5-79.1
+						c44.6-0.1,80.8,35.1,81,78.6V367.9z M1509,367.9c0.1,43.5-35.9,78.9-80.5,79.1c-44.6,0.1-80.8-35.1-81-78.6v-0.4
+						c-0.1-43.6,35.9-78.9,80.5-79.1c44.6-0.1,80.8,35.1,81,78.6V367.9z"></path>
+</svg>
+<span class="fc123-btn-txt">Still loading...</span>
+</div>
+<div class="fc123-pr">
+<a href="https://flycricket.com/sponsorships.html?utm_source=flycricket&amp;utm_medium=privacy_sponsor" target="_blank">ADS
+						BY FLYCRICKET</a>
+</div>
+</div>
+</div>
+</div>
+<div style="background:#eee;">
+<div class="container">
+
+<div class=" main-container">
+<h2>
+					
+						Shared Notes
+						
+					&gt; Privacy Policy</h2>
+<hr/>
+<div id="content"><div><h1>Privacy Policy for Shared Notes</h1></div><br/>This Privacy Policy provides our policies and procedures for collecting, using, and disclosing your information. Users access the Shared Notes service (“Service”) through the application, through APIs, and through third-parties. A “Device” is any computer used to access the Shared Notes Service, including without limitation a desktop, laptop, mobile phone, tablet, or other consumer electronic device. This Privacy Policy governs your access of the Shared Notes Service, regardless of how you access it, and by using our Service you consent to the collection, transfer, processing, storage, disclosure and other uses described in this Privacy Policy. All of the different forms of data, content, and information described below are collectively referred to as “information.”<br/><br/><br/><blockquote><h3>1. The Information We Collect And Store</h3><p>We may collect and store the following information when running the Shared Notes Service:</p><p>Information You Provide. When you register for an account, we collect some Personal Information, such as your name and email address. You may also ask us to import your contacts by giving us access to your third party services (for example, your email account) or to use your social networking information if you give us access to your account on social network connection services. You may also provide us with your contacts’ email addresses when sharing folders or files with them. We may also receive Personal Information (for example, your email address) through other users, for example if they have tried to share something with you.</p><p>Your Data. We collect and store data you upload, download, or access with the Service (“Data”).</p><p>Log Data. When you use the Service, we automatically record information from your Device, its software, and your activity using the Service. This may include the Device’s Internet Protocol (“IP”) address, information you search for through the Service, locale preferences, identification numbers associated with your Devices, your mobile carrier, date and time stamps, system configuration information, and other interactions with the Service.</p><p>Cookies. We also use “cookies” to collect information and improve our Service. A cookie is a small data file that we transfer to your Device. We may use “persistent cookies” to save your registration ID and login password for future logins to the Service. We may use “session ID cookies” to enable certain features of the Service, to better understand how you interact with the Service and to monitor aggregate usage and web traffic routing on the Service. You can instruct your browser, by changing its options, to stop accepting cookies or to prompt you before accepting a cookie from the websites you visit. If you do not accept cookies, however, you may not be able to use all aspects of the Service.</p><p> </p><h3>2. How We Use Personal Information And Why</h3><p>Personal Information. In the course of using the Service, we may collect personal information that can be used to contact or identify you (“Personal Information”). Personal Information is or may be used: (i) to provide and improve our Service, (ii) to administer your use of the Service, (iii) to better understand your needs and interests, (iv) to personalize and improve your experience, and (v) to provide or offer software updates and product announcements. If we communicate with you, and you no longer wish to receive communications from us, please follow the “unsubscribe” instructions provided in any of those communications, or update your settings information.</p><p>Geo-Location Information.  Some Devices allow applications to access real-time location-based information (for example, GPS). Our mobile application does not collect such information from your mobile device at any time while you download or use our mobile apps as of the date this policy went into effect, but may do so in the future with your consent to improve our Service.</p><p>Analytics. We also collect some information (ourselves or using third party services) using logging and cookies, such as IP address, which can sometimes be correlated with personal information. We use this information for the above purposes and to monitor and analyse use of the Service, for the Service’s technical administration, to increase our Service’s functionality and user-friendliness, and to verify users have the authorization needed for the Service to process their requests.</p><p>Your Data. You have control over who sees the Data you uploaded, downloaded or access with the Service. We cannot view it unless you expressly give us permission or it’s necessary to comply with our legal obligations. Specifically: To help refine or improve the technology, we may ask you for permission to review portions of your Data. Also if you contact our Customer Support team for help with specific pieces of Data in your account (for example, if you can’t find a note you believe should be in your account), we may ask for your temporary permission to look at your Data. This permission terminates when the issue is resolve.</p><p>Where we need to process your personal information either to comply with law, or to perform the terms of a contract we have with you and you fail to provide that information when requested, we may not be able to perform the contract we have or are trying to enter into with you (for example, to provide you with the functionalities of the Services). In this case, we may have to stop you using our Services.</p><p> </p><h3>3. Information Sharing and Disclosure</h3><p>Use. We do not sell your personal information to third parties. We may share or disclose your information with your consent, for example if you use a third party application to access your account (see below). Through certain features of the Service, you may also have the ability to make some of your information public.</p><p>Service Providers, Business Partners and Others. We use certain trusted third party companies and individuals to help us provide, analyze, and improve the Service (including but not limited to data storage, maintenance services, database management, analytics, and improvement of the Service’s features). These third parties may have access to your information only for purposes of performing these tasks on our behalf and under obligations similar to those in this Privacy Policy. You can view the third parties we use to help us provide our Service in Appendix 1.</p><p>Third-Party Applications. We may share your information with a third party application with your consent, for example when you choose to access our Service through such an application. We are not responsible for what those parties do with your information, so you should make sure you trust the application and that it has a privacy policy acceptable to you.</p><p>Compliance with Laws and Law Enforcement Requests; Protection of Shared Notes Rights.   We may disclose to parties outside Shared Notes Data and information about you that we collect when we have a good faith belief that disclosure is reasonably necessary to (a) comply with a law, regulation or compulsory legal request; (b) protect the safety of any person from death or serious bodily injury; (c) prevent fraud or abuse of Shared Notes or its users; or (d) to protect Shared Notes property rights.</p><p>Business Transfers. If we are involved in a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred as part of that transaction, but we will notify you (for example, via email and/or a prominent notice on our website) of any change in control or use of your Personal Information or Data, or if either become subject to a different Privacy Policy. We will also notify you of choices you may have regarding the information.</p><p>Non-Private or Non-Personal Information. We may disclose your non-private, aggregated, or otherwise non-personal information, such as usage statistics of our Service.</p><p> </p><h3>4. Your Rights Relating To Your Information</h3><p>You can contact us at rahul1champ@gmail.com to ask us to provide access to, correct, update, or delete your personal information. We may ask you for proof of account ownership and/or identity before fulfilling your request. This is a security measure to ensure that your information is not disclosed to any person who has no right to receive it.  In some cases we may retain copies of your information if required by law. Please note that some or all of your personal information may be required in order for us to provide you with access to the certain specific functionalities of our Service.</p><p>For Residents in the EU</p><p>The General Data Protection Regulation (also known as GDPR) provides you with additional rights regarding your personal information. If you are within the EU, you have the right to:</p><p>Request access to your personal information. This enables you to receive a copy of the information we hold about you and to check that we are lawfully processing it.</p><p>Request correction of the personal information that we hold about you. This enables you to have any incomplete or inaccurate information we hold about you corrected.</p><p>Request erasure of your personal information. This enables you to ask us to delete or remove information where there is no good reason for us continuing to process it.</p><p>Object to processing of your personal information. This right exists where we are relying on a legitimate interest as the legal basis for our processing and there is something about your particular situation, which makes you want to object to processing of your information on this ground. You also have the right to object where we are processing your information for direct marketing purposes.</p><p>Request the restriction of processing of your personal information. This enables you to ask us to suspend the processing of your information, for example if you want us to establish its accuracy or the reason for processing it.</p><p>Request the transfer of your personal information. We will provide to you your personal information in a structured, commonly used, machine-readable format. Note that this right only applies to automated information which you initially provided consent for us to use or where we used the information to perform a contract with you.</p><p>Withdraw consent. This right only exists where we are relying on consent to process your information (“Consent Withdrawal”). If you withdraw your consent, we may not be able to provide you with access to the certain specific functionalities of our Service. We will advise you if this is the case at the time you withdraw your consent.</p><p>If you want to exercise any of the rights described above or submit a complaint regarding this Privacy Policy, please send an email to rahul1champ@gmail.com  with “GDPR Request” in the subject line. In the email please describe, with specificity, the GDPR right you are requesting assistance with. If you feel that your complaint has not been adequately resolved, please note that the GDPR gives you the right to contact your local data protection supervisory authority.</p><p>For Residents of California</p><p>The California Consumer Privacy Act (also known as CCPA) provides you with additional rights regarding your personal information. If you are a California resident, these terms and conditions apply to you.</p><p>In the preceding 12 months, we may have collected from you or from your use of the services, categories of personal information as defined under the CCPA, which includes the following:</p><p>Identifiers such as your name, email address, IP address, unique device identifiers, advertising identifiers, online identifier, and other similar identifier;</p><p>Protected Classifications, such as your gender and age</p><p>Commercial information such as your payment method and related information if you purchase a subscription;</p><p>Internet or other electronic network activity information, including the name of your mobile operator, your brows type, language and time zone.</p><p>Interaction with our software or apps such as usage data, type and version of operating system, hardware version, device settings, software types, battery and signal strength, screen resolution, device manufacturer and model, language, and Internet browser type and version;</p><p>In the preceding 12 months, we may have used and disclosed personal information for the business and commercial purposes.</p><p>If you are a California resident, you have the right to:</p><p>Access specific pieces of personal information we have collected about you in the last 12 months.</p><p>Request to know the categories of personal information we have collected about you and the purposes for doing so; the categories of sources of that data; the categories of third parties with whom we shared it for a business purpose and our purposes for doing so.</p><p>Request deletion of your personal information.</p><p>Opt out of sales of personal information. To opt out of receiving interest-based advertising, you can exercise your choice by using your settings.</p><p>Receive equal service and not be discriminated against even if you exercise any of your CCPA rights.</p><p> </p><h3>5. How Long We Store Your Information</h3><p>We will retain your information for as long as your account is active or as needed to provide you services. We may retain and use your information as necessary to comply with our legal obligations, resolve disputes, and enforce our agreements. Consistent with these requirements, we will try to delete your information quickly upon request. Please note, however, that there might be latency in deleting information from our servers and backed-up versions might exist after deletion. In addition, we do not delete from our servers files that you have in common with other users.</p><p> </p><h3>6. Where We Store Your Information</h3><p>If you register for an account and sync your device with our Service, your Information (including but not limited your Data), will be stored on servers hosted by Google Cloud Platform or Amazon Web Service. For information regarding Google Cloud Platform Data Processing and Security Terms, please visit <a href="https://cloud.google.com/" rel="nofollow" target="_blank">https://cloud.google.com</a>. For information regarding Amazon Web Service, please visit <a href="https://aws.amazon.com/" rel="nofollow" target="_blank">https://aws.amazon.com/</a>.</p><p>For Residents in the EU</p><p>If you are a resident of the European Economic Area (“EEA”) or Switzerland, please note that Google’s certification under the EU-U.S. and Swiss-U.S. Privacy Shield Frameworks includes Google Cloud Platform. Google has also gained confirmation of compliance from European Data Protection Authorities for their model contract clauses, affirming that their current contractual commitments for Google Cloud Platform fully meet the requirements under the Data Protection Directive to legally frame transfers of personal data from the EU to the rest of the world. Meanwhile, Amazon Web Service offers customers a Data Processing Addendum, including Model Clauses (Data Processing Addendum) that was approved in 2015 by the EU data protection authorities, known as the Article 29 Working Party. This Data Processing Addendum enables customers, when using AWS to transfer personal data outside the European Economic Area (EEA), to any country, including to the US.</p><p> </p><h3>7. Security</h3><p>The security of your information is important to us. When you enter sensitive information (such as a credit card number) on our order forms, we encrypt the transmission of that information using secure socket layer technology (SSL).</p><p>We follow generally accepted standards to protect the information submitted to us, both during transmission and once we receive it. No method of electronic transmission or storage is 100% secure, however. Therefore, we cannot guarantee its absolute security.</p><p> </p><h3>8. Our Policy Toward Children</h3><p>Our Service is not directed to persons under 13. We do not knowingly collect personally identifiable information from children under 13. If a parent or guardian becomes aware that his or her child has provided us with Personal Information without their consent, he or she should contact us at rahul1champ@gmail.com.  If we become aware that a child under 13 has provided us with Personal Information, we will take steps to delete such information from our files.</p><p> </p><h3>9. Changes to our Privacy Policy</h3><p>This Privacy Policy may change from time to time, so please check back from time to time. If we make a change to this privacy policy that we believe materially reduces your rights, we will provide you with notice (for example, by email). By continuing to use the Service after those changes become effective, you agree to be bound by the revised Privacy Policy.</p><p> </p><h3>10. Contact Us</h3><p>Rahul Sain welcomes your comments regarding this Privacy Policy. Please contact us by email at rahul1champ@gmail.com</p><p> </p><p>Appendix 1. Third party service provider</p><table><tbody><tr><td>Service provider</td><td>Purpose</td><td>Website</td></tr><tr><td>Google Cloud</td><td>Cloud Infrastructure</td><td><a href="https://cloud.google.com/" rel="nofollow" target="_blank">https://cloud.google.com/</a></td></tr><tr><td>Amazon Web Service</td><td>Cloud Infrastructure</td><td><a href="https://aws.amazon.com/" rel="nofollow" target="_blank">https://aws.amazon.com/</a></td></tr><tr><td>Flurry Analytics</td><td>User Analytics</td><td><a href="https://developer.yahoo.com/analytics/" rel="nofollow" target="_blank">https://developer.yahoo.com/analytics/</a></td></tr></tbody></table><p>Last updated March 15th, 2021</p></blockquote></div>
+</div>
+</div>
+</div>
+<footer><footer>
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-6" style="text-align:left;margin:auto;vertical-align:middle;">
+<div class="social-icons">
+</div>
+<div id="attribution">
+<!-- <p><a href="/">Homepage</a></p> -->
+<p>App <a href="privacy.html">Privacy Policy</a></p>
+<p>Website <a href="https://flycricket.com/privacy.html">Privacy Policy</a>, <a href="https://flycricket.com/cookie_policy.html">Cookie Policy</a>, &amp; <a href="https://flycricket.com/terms.html">Terms of Use</a></p>
+<p>This site is protected by reCAPTCHA and the Google
+						<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+						<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+					</p>
+<p>
+						This site is hosted by 
+						<a href="https://www.flycricket.com">Flycricket</a>
+</p>
+</div>
+</div>
+<div class="col-xs-12 col-md-6 footer-store-button-container">
+</div>
+</div>
+</div>
+</footer></footer>
+<script async="" src="https://www.googletagmanager.com/gtag/js"></script>
+<script id="script_analytics">// $(function () {
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "https://app.flycricket.com/api/website_view/984f8d223bee4b2eb70c92e3e0956e20",
+// 		dataType: 'json',
+// 		contentType: 'application/json',
+// 		data: JSON.stringify({ referrer: document.referrer }),
+// 		success: function (resp) {
+// 			console.log(resp);
+// 		},
+// 		error: function (xhr, ajaxOptions, thrownError) {
+// 			console.error(thrownError);
+// 		}
+// 	});
+// });
+
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'UA-84588334-7');
+
+
+</script>
+<script pro-remove="" type="text/javascript" whitelist-remove="">
+
+		function _fc_dlog(identifier) {
+			console.log("Logging identifier:", identifier);
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", 'https://v4s77pzm9j.execute-api.us-east-1.amazonaws.com/' + _fc_stage + '/impression', true);
+			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhr.send(JSON.stringify({
+				action: identifier,
+				source: btoa(window.location.href),
+			}));
+		}
+
+		function _fc_loadgeneric() {
+			var jqxhr = $.getJSON("https://cdn.flycricket.com/options.json?t=" + Date.now(), function (json) {
+			//var jqxhr = $.getJSON("../../options.json?t=" + Date.now(), function (json) {
+
+				// pick one at random
+				// TODO: later -- platform filtering
+				var ndx = Math.floor(Math.random() * 100) % json.options.length;
+				var selected = json.options[ndx];
+
+				// display it and mark it as the one used
+				$("#fc123-promo h1").text(selected.privacy.content.h1);
+				$("#fc123-promo h2").text(selected.privacy.content.h2);
+				$("#fc123-promo .fc123-button .fc123-btn-txt").text(selected.privacy.content.cta);
+
+				$(".fc123-promoclass").css('background', selected.privacy.style.main.background);
+				$(".fc123-promoclass").css('color', selected.privacy.style.main.color);
+				$(".fc123-promoclass h1").css('color', selected.privacy.style.main.color);
+				$(".fc123-promoclass h2").css('color', selected.privacy.style.main.color);
+				$(".fc123-pr a").css('color', selected.privacy.style.main.color);
+
+				$(".fc123-promoclass .fc123-button").css('background', selected.privacy.style.cta.background);
+				$(".fc123-promoclass .fc123-button").css('color', selected.privacy.style.cta.color);
+				$(".fc123-promoclass .fc123-button .fc123-btn-txt").css('color', selected.privacy.style.cta.color);
+				$(".fc123-promoclass .fc123-button .st0").css('fill', selected.privacy.style.cta.color);
+				$(".fc123-promoclass .fc123-button .st1").css('stroke', selected.privacy.style.cta.color);
+
+				$(".fc123-promoclass .fc123-button").mouseenter(function (elem) {
+					$(this).css('background', selected.privacy.style.cta.backgroundHover);
+				}).mouseleave(function (elem) {
+					$(this).css('background', selected.privacy.style.cta.background);
+				});
+
+
+				$(".fc123-promoclass img").attr('src', selected.privacy.image);
+
+				// a platform indicator depending on the platform
+				if (bowser.ios) {
+					$(".fc123-b-ios").css('display', 'inline-block');
+				} else if (bowser.android) {
+					$(".fc123-b-android").css('display', 'inline-block');
+				} else {
+					$(".fc123-b-android").css('display', 'inline-block');
+					$(".fc123-b-ios").css('display', 'inline-block');
+				}
+
+				$(".fc123-promoclass").css('display', 'flex');
+
+				$(".fc123-promoclass").click(function () {
+					var url = selected.urls.default;
+					if (bowser.ios && selected.urls.ios) {
+						url = selected.urls.ios;
+					} else if (bowser.android && selected.urls.android) {
+						url = selected.urls.android;
+					}
+
+					var params = {
+						action: selected.action,
+						url: btoa(url),
+						source: btoa(window.location.href),
+					}
+					var queryString = Object.keys(params).map(function (key) {
+						return key + '=' + params[key]
+					}).join('&');
+					window.location.href = "https://v4s77pzm9j.execute-api.us-east-1.amazonaws.com/" + _fc_stage + "/click?" + queryString;
+				});
+
+				_fc_dlog(selected.action);
+			}).always(function () {
+				$("#preloader").hide();
+			});
+		}
+
+		$(function () {
+			_fc_loadgeneric();
+		})
+	</script>
+</body>
+</html>
