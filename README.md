@@ -1,3 +1,4 @@
+# Shared Notes
 Share notes with your team.
 
 <p align="center">
@@ -26,3 +27,7 @@ Do checkout code of conduct [here](https://github.com/rahulsain/SharedNotes/blob
 ## License ✅
 
 This project is licensed under BSD 3-Clause "New" or "Revised" License. Check it out [here](https://github.com/rahulsain/SharedNotes/blob/main/LICENSE).
+
+## Privacy Policy
+
+The privacy policy of this project is updated accordingly, you can check it out [here](https://sharednotes.me/privacy.html).
